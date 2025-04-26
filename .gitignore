@@ -1,0 +1,15 @@
+# Ignore environment variables file
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore temporary directories created by the app
+.temp_*
+rjt_app_*
+
+# Ignore IDE/editor directories
+.vscode/
+.idea/ 

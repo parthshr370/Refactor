@@ -1,0 +1,10 @@
+streamlit
+GitPython
+openai>=1.0.0
+langchain-openai
+langchain-core
+tenacity
+requests
+python-dotenv
+streamlit-mermaid
+# Add other dependencies as needed

@@ -1,0 +1,4 @@
+Translate the following Ruby code into an equivalent Java class named '{java_class_name}' in the package '{base_package}'.
+Ensure the Java code is syntactically correct and maintains the original logic as closely as possible.
+Include necessary imports.
+ONLY output the raw Java code for the class, including package declaration and imports. Do not include any explanations, introductions, or markdown formatting like ```java ... ```. 

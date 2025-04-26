@@ -1,0 +1,5 @@
+package {base_package}.util;
+
+public class {java_class_name} {
+    // ... (existing Ruby code logic)
+} 
