@@ -1,0 +1,13 @@
+package {base_package}.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@Service
+public class {java_class_name} {
+
+    @Autowired
+    // Add any other necessary dependencies here
+
+    // Add any other necessary methods here
+} 

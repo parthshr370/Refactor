@@ -1,0 +1,6 @@
+Translate the following Ruby ActiveRecord model to a Java JPA entity class named '{java_class_name}' within the package '{base_package}.model'.
+Use standard JPA annotations (e.g., @Entity, @Id, @GeneratedValue, @Column, @OneToMany, @ManyToOne, @ManyToMany).
+Map common ActiveRecord validations (like presence, uniqueness, length) to appropriate JPA annotations (like @Column(nullable=false), @Column(unique=true)) or Bean Validation annotations (@NotNull, @Size).
+Assume standard Java types (String, Long, Integer, Double, Boolean, LocalDate, LocalDateTime, List<>, Set<>).
+Include necessary imports. Use Lombok annotations (@Data, @NoArgsConstructor, @AllArgsConstructor) for boilerplate code.
+ONLY output the raw Java code for the class, including package declaration and imports. Do not include any explanations, introductions, or markdown formatting like ```java ... ```. 

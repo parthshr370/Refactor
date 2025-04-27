@@ -1,0 +1,95 @@
+You are an expert system designed to analyze Ruby/Rails projects and propose an equivalent Java Spring Boot project structure.
+
+Analyze the following list of files from a Ruby/Rails project:
+```
+{file_list_str}
+```
+
+Your task is to propose an idiomatic Java Spring Boot project structure based on these files, using the base package '{base_package}'.
+
+Follow these instructions carefully:
+1.  Identify standard Rails components (models, controllers, views, helpers, services, libs, initializers, routes, assets etc.).
+2.  Map these components to standard Spring Boot conventions:
+    *   Rails models (`app/models/*.rb`) -> Java entities/models (`src/main/java/{base_package_path}/model/`) and JPA repositories (`src/main/java/{base_package_path}/repository/`). Generate both `EntityName.java` and `EntityNameRepository.java`.
+    *   Rails controllers (`app/controllers/*_controller.rb`) -> Spring controllers (`src/main/java/{base_package_path}/controller/`). Generate `ResourceNameController.java`. Consider if a corresponding service (`ResourceNameService.java` in `src/main/java/{base_package_path}/service/`) is needed.
+    *   Rails helpers (`app/helpers/*_helper.rb`) -> Java utility classes (`src/main/java/{base_package_path}/util/`). Generate `HelperNameUtil.java`.
+    *   Rails services (e.g., `app/services/*.rb`) -> Spring services (`src/main/java/{base_package_path}/service/`). Generate `ServiceName.java` or `ServiceNameService.java`.
+    *   Rails libs (`lib/**/*.rb`) -> Typically Java utility classes (`src/main/java/{base_package_path}/util/`) or services depending on usage. Use your judgment.
+    *   Rails views (`app/views/**/*.erb`, `.haml`, etc.) -> Placeholder HTML files (`src/main/resources/templates/**/*.html`). Maintain the subdirectory structure relative to `app/views`.
+    *   Rails assets (`app/assets/javascripts`, `app/assets/stylesheets`, `app/assets/images`) -> Static resources (`src/main/resources/static/js`, `src/main/resources/static/css`, `src/main/resources/static/images`). Include the filenames.
+    *   Rails initializers (`config/initializers/*.rb`) -> Suggest a generic configuration class like `ApplicationConfig.java` in `src/main/java/{base_package_path}/config/`. Also include `src/main/resources/application.properties`.
+    *   Include common directories like `src/main/java/{base_package_path}/exception` (e.g., for `ResourceNotFoundException.java`) if models/controllers are present.
+3.  Use standard Java naming conventions (PascalCase for classes, camelCase for methods/variables). Convert Ruby snake_case filenames to Java PascalCase class names.
+4.  For EACH proposed Java file, provide a concise, one-sentence summary of its primary purpose based on its likely Rails origin and Spring Boot role.
+5.  Your response MUST be ONLY the JSON object and the Mermaid diagram string, separated by '---MERMAID---'. No other text, explanations, or markdown formatting around the main blocks.
+
+JSON Output Format:
+Provide a single JSON object where keys are the directory paths relative to the project root (e.g., "src/main/java/com/example/myapp/controller") and values are lists of JSON objects, each containing a 'name' (the proposed Java file name) and a 'summary' (the one-sentence purpose). Sort the list of file objects alphabetically by 'name'. Only include directories that contain proposed files.
+Example:
+```json
+{{
+  "src/main/java/{base_package_path}/controller": [
+    {{ "name": "ProductController.java", "summary": "Handles web requests related to products." }},
+    {{ "name": "UserController.java", "summary": "Manages user authentication and profile endpoints." }}
+  ],
+  "src/main/java/{base_package_path}/model": [
+    {{ "name": "Product.java", "summary": "Represents the product data entity." }},
+    {{ "name": "User.java", "summary": "Represents the user data entity." }}
+  ],
+  // ... other directories
+}}
+```
+
+Mermaid Output Format:
+Provide a Mermaid graph definition string (using `graph TD`) visualizing the primary proposed Java packages and key classes (Controllers, Services, Repositories, Entities). Show dependencies where appropriate. Keep it concise.
+
+--- RESPONSE EXAMPLE START ---
+```json
+{{
+  "src/main/java/{base_package_path}/config": [
+    {{ "name": "ApplicationConfig.java", "summary": "Provides application-level configuration beans." }}
+  ],
+  "src/main/java/{base_package_path}/controller": [
+    {{ "name": "ExampleController.java", "summary": "Handles HTTP requests for the Example resource." }}
+  ],
+  "src/main/java/{base_package_path}/model": [
+    {{ "name": "ExampleEntity.java", "summary": "Represents the Example data entity." }}
+  ],
+  "src/main/java/{base_package_path}/repository": [
+    {{ "name": "ExampleEntityRepository.java", "summary": "Provides data access methods for ExampleEntity." }}
+  ],
+  "src/main/java/{base_package_path}/service": [
+    {{ "name": "ExampleService.java", "summary": "Contains business logic related to Example entities." }}
+  ],
+  "src/main/resources": [
+    {{ "name": "application.properties", "summary": "Spring Boot application configuration file." }}
+  ]
+}}
+```
+---MERMAID---
+```mermaid
+graph TD
+    subgraph "src/main/java/{base_package_path}"
+        A(controller) --> AC(ExampleController);
+        B(service) --> BC(ExampleService);
+        C(repository) --> CC(ExampleEntityRepository);
+        D(model) --> DC(ExampleEntity);
+        E(config) --> EC(ApplicationConfig);
+
+        AC --> BC;
+        BC --> CC;
+    end
+    subgraph "src/main/resources"
+        F(.) --> FC(application.properties);
+    end
+```
+--- RESPONSE EXAMPLE END ---
+
+Now, generate the response for the provided file list and base package '{base_package}'. Ensure the output strictly follows the JSON (with file name and summary objects) and Mermaid format specified above, separated by '---MERMAID---'.
+
+JSON Structure:
+```json
+```
+---MERMAID---
+```mermaid
+``` 

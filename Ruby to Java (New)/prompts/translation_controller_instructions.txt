@@ -1,0 +1,26 @@
+package {base_package}.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/{controller_name}")
+public class {java_class_name} {
+
+    @Autowired
+    private {service_name} {service_variable_name};
+
+    @GetMapping("/{action_name}")
+    public String {action_name}(@RequestParam("param1") String param1, Model model) {
+        // Implementation logic here
+        return "{template_name}";
+    }
+
+    @PostMapping("/{action_name}")
+    public String {action_name}(@RequestBody {model_name} {model_variable_name}, Model model) {
+        // Implementation logic here
+        return "{template_name}";
+    }
+} 
